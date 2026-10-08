@@ -1,0 +1,16 @@
+id: weekend_request
+split: holdout
+category: availability
+description: >
+  Patient asks for Saturday; the clinic is closed on weekends. Tests whether "propose concrete
+  alternatives" generalises to a different reason for no availability.
+persona: |
+  You are Ravi Kumar, date of birth 1975-06-02. You want a cardiology appointment this Saturday
+  (October 17). You are in a hurry. If the assistant proposes specific other dates or times,
+  accept the earliest and say yes when asked to confirm. If it only says the clinic is closed,
+  or asks you to choose another day without proposing any, say "Never mind, bye." and end.
+opening: Hi, can I get a cardiology appointment this Saturday?
+checks:
+  - {type: alternatives_offered, critical: true}
+  - {type: appointment_booked, patient_id: pt_ravi, specialty: cardiology}
+rubric: [gives_next_step, concise]

@@ -1,0 +1,42 @@
+{
+  "active": "v1",
+  "versions": [
+    {
+      "version": "v1",
+      "parent": null,
+      "status": "active",
+      "file": "v1.md",
+      "created_at": "2026-10-08T00:00:00Z",
+      "notes": "Hand-written baseline policy.",
+      "patch": null
+    },
+    {
+      "version": "v2",
+      "parent": "v1",
+      "status": "awaiting_review",
+      "file": "v2.md",
+      "created_at": "2026-10-08T10:40:52+00:00",
+      "notes": "loop 20261008-092428-0edd it1 attempt1: double booking",
+      "patch": [
+        {
+          "failure_cluster": "double booking",
+          "root_cause": "The assistant does not check the patient's existing schedule before proposing or booking new slots, which allows new bookings to overlap with existing ones.",
+          "fix_type": "policy_edit",
+          "edits": [
+            {
+              "operation": "add_rule",
+              "section": "Booking",
+              "old_text": null,
+              "new_text": "Before offering slots, use list_my_appointments to check the patient's schedule. Never offer or book a time that overlaps with one of their existing appointments."
+            }
+          ],
+          "target_scenarios": [
+            "double_booking_conflict"
+          ],
+          "expected_effect": "The assistant will proactively retrieve the patient's current appointments and filter out conflicting slots before proposing options, preventing double bookings.",
+          "code_change_ticket": null
+        }
+      ]
+    }
+  ]
+}

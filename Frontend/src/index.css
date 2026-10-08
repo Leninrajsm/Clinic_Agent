@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
+
+  /* Clinical aqua, built around #B3D7E0 (brand-300). Darker steps keep text and buttons readable. */
+  --color-brand-50: #f1f8fa;
+  --color-brand-100: #e1eff3;
+  --color-brand-200: #cae4eb;
+  --color-brand-300: #b3d7e0;
+  --color-brand-400: #84bccb;
+  --color-brand-500: #559fb3;
+  --color-brand-600: #3b8398;
+  --color-brand-700: #2f6a7c;
+  --color-brand-800: #295766;
+  --color-brand-900: #254957;
+  --color-brand-950: #142e38;
+
+  --color-canvas: #f3f8f9;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-canvas text-slate-900 antialiased;
+}
+
+@utility card {
+  @apply rounded-2xl bg-white shadow-[0_1px_3px_rgba(4,49,31,0.05)] ring-1 ring-slate-200/70;
+}
+
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+@utility btn-primary {
+  @apply btn bg-brand-700 text-white shadow-sm shadow-brand-900/10 hover:bg-brand-800;
+}
+
+@utility btn-ghost {
+  @apply btn bg-white text-slate-700 ring-1 ring-slate-200 hover:bg-slate-50;
+}
+
+@utility btn-icon {
+  @apply inline-flex h-10 w-10 items-center justify-center rounded-xl text-slate-500 transition-colors hover:bg-brand-50 hover:text-brand-700 disabled:opacity-40;
+}
+
+@utility input {
+  @apply rounded-xl border-0 bg-white px-3.5 py-2.5 text-sm ring-1 ring-slate-200 outline-none placeholder:text-slate-400 focus:ring-2 focus:ring-brand-500;
+}
+
+@utility label {
+  @apply text-[11px] font-semibold uppercase tracking-wider text-slate-400;
+}
+
+@keyframes blink {
+  0%,
+  80%,
+  100% {
+    opacity: 0.25;
+  }
+  40% {
+    opacity: 1;
+  }
+}
+
+.typing-dot {
+  animation: blink 1.2s infinite both;
+}
+.typing-dot:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.typing-dot:nth-child(3) {
+  animation-delay: 0.3s;
+}

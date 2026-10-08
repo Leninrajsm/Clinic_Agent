@@ -1,0 +1,15 @@
+id: reschedule
+split: train
+category: reschedule
+description: Move an existing appointment to another day; must not create a second booking.
+persona: |
+  You are Emily Chen, date of birth 1995-12-01. You have a dermatology appointment this
+  Thursday that you need to move to Friday (October 16), in the afternoon. Accept the first
+  Friday afternoon time offered and say yes when asked to confirm.
+opening: Hi, I need to move my dermatology appointment.
+checks:
+  - {type: appointment_rescheduled, appointment_id: appt_emily_derm, date: "2026-10-16", after_hour: 12, critical: true}
+  - {type: max_bookings, n: 0, critical: true}
+  - {type: confirmed_before_commit, critical: true}
+  - {type: conversation_completed}
+rubric: [read_back_details, concise]

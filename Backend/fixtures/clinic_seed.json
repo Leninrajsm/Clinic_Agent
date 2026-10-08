@@ -1,0 +1,41 @@
+{
+  "clinic": {
+    "name": "Riverside Family Clinic",
+    "address": "240 Riverside Ave, Suite 3, Springfield",
+    "phone": "(555) 010-2400",
+    "hours": "Monday to Friday, 9:00 AM to 5:00 PM. Closed weekends and public holidays.",
+    "new_patients": "New patients must register with the front desk before booking. The front desk can call them back to complete registration.",
+    "cancellation_policy": "Please cancel or reschedule at least 24 hours in advance.",
+    "insurance": "Most major insurance plans are accepted. The front desk can confirm coverage for a specific plan.",
+    "parking": "Free parking is available behind the building.",
+    "prescriptions": "Prescription refills and medication questions are handled by the clinical team, not by the scheduling assistant."
+  },
+  "slot_minutes": 30,
+  "prefill_percent": 35,
+  "horizon_days": 28,
+  "providers": [
+    {"id": "prov_shah", "name": "Dr. Priya Shah", "specialty": "dermatology", "weekdays": [1, 3, 4], "hours": [[9, 12], [13, 16]]},
+    {"id": "prov_mehta", "name": "Dr. Arjun Mehta", "specialty": "cardiology", "weekdays": [0, 2, 4], "hours": [[9, 12], [13, 17]]},
+    {"id": "prov_iyer", "name": "Dr. Kavya Iyer", "specialty": "cardiology", "weekdays": [1, 3], "hours": [[10, 12], [13, 16]]},
+    {"id": "prov_miller", "name": "Dr. Susan Miller", "specialty": "family medicine", "weekdays": [0, 1, 2, 3, 4], "hours": [[9, 12], [13, 17]]},
+    {"id": "prov_okafor", "name": "Dr. David Okafor", "specialty": "family medicine", "weekdays": [0, 2, 3], "hours": [[9, 12], [14, 17]]},
+    {"id": "prov_torres", "name": "Dr. Ben Torres", "specialty": "orthopedics", "weekdays": [2, 4], "hours": [[9, 12], [13, 15]]}
+  ],
+  "patients": [
+    {"id": "pt_maria", "first_name": "Maria", "last_name": "Lopez", "dob": "1988-03-14", "phone": "555-0101"},
+    {"id": "pt_ravi", "first_name": "Ravi", "last_name": "Kumar", "dob": "1975-06-02", "phone": "555-0102"},
+    {"id": "pt_anita", "first_name": "Anita", "last_name": "Rao", "dob": "1962-11-20", "phone": "555-0103"},
+    {"id": "pt_sam", "first_name": "Sam", "last_name": "Patel", "dob": "1990-01-25", "phone": "555-0104"},
+    {"id": "pt_james", "first_name": "James", "last_name": "Carter", "dob": "1983-07-09", "phone": "555-0105"},
+    {"id": "pt_linda", "first_name": "Linda", "last_name": "Carter", "dob": "1985-02-17", "phone": "555-0105"},
+    {"id": "pt_emily", "first_name": "Emily", "last_name": "Chen", "dob": "1995-12-01", "phone": "555-0106"},
+    {"id": "pt_john_a", "first_name": "John", "last_name": "Smith", "dob": "1970-04-04", "phone": "555-0107"},
+    {"id": "pt_john_b", "first_name": "John", "last_name": "Smith", "dob": "1985-09-30", "phone": "555-0108"}
+  ],
+  "appointments": [
+    {"id": "appt_emily_derm", "patient_id": "pt_emily", "provider_id": "prov_shah", "day_offset": 2, "time": "10:00", "reason": "skin rash follow-up"},
+    {"id": "appt_james_fm", "patient_id": "pt_james", "provider_id": "prov_miller", "day_offset": 7, "time": "09:30", "reason": "annual physical"},
+    {"id": "appt_linda_cardio", "patient_id": "pt_linda", "provider_id": "prov_iyer", "day_offset": 3, "time": "11:00", "reason": "blood pressure review"},
+    {"id": "appt_sam_ortho", "patient_id": "pt_sam", "provider_id": "prov_torres", "day_offset": 9, "time": "13:30", "reason": "knee pain"}
+  ]
+}

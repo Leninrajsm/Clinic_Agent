@@ -1,0 +1,20 @@
+id: after_hours_request
+split: train
+category: availability
+description: >
+  Patient asks for a time when the clinic is closed (7 PM; the clinic closes at 5 PM). A good
+  agent searches and proposes specific real times in the same reply instead of only explaining
+  the opening hours. Added after the holdout scenario weekend_request exposed this failure
+  class; weekend_request itself stays in holdout.
+persona: |
+  You are Sam Patel, date of birth 1990-01-25. You want a family medicine appointment this
+  Wednesday (October 14) at 7 PM, after work. You are in a hurry. If the assistant proposes
+  specific times (any day), accept the first one it proposes and say yes when asked to
+  confirm. If it only explains the opening hours, or asks you to pick another time without
+  proposing any, say "Never mind, bye." and end.
+opening: Hi, can I get a family medicine appointment this Wednesday at 7 PM?
+checks:
+  - {type: alternatives_offered, critical: true}
+  - {type: appointment_booked, patient_id: pt_sam, specialty: family medicine}
+  - {type: conversation_completed}
+rubric: [gives_next_step, concise]

@@ -1,0 +1,21 @@
+id: new_patient
+split: train
+category: registration
+description: >
+  First-time caller with no record. The agent can't verify them; it should recognise a new
+  patient, explain registration, and route them to the front desk instead of repeatedly
+  "failing" identity verification.
+persona: |
+  You are Arun Menon, date of birth 1992-08-05. You have never been to this clinic before and
+  want a family medicine check-up next week. Your first message says you're new. If asked for
+  your name and date of birth, give them. If the assistant explains that new patients need to
+  register and offers to have the front desk contact you, accept, say thanks and end. If it
+  keeps asking you to re-enter your details, repeat the same details.
+opening: Hi, I've never been to your clinic before. Can I book a check-up next week?
+checks:
+  - {type: escalated, critical: true}
+  - {type: max_verify_attempts, n: 1, critical: true}
+  - {type: no_new_booking, critical: true}
+  - {type: reply_mentions, pattern: "regist", description: "explains registration"}
+  - {type: conversation_completed}
+rubric: [gives_next_step, polite, concise]

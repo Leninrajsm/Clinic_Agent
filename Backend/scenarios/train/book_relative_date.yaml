@@ -1,0 +1,19 @@
+id: book_relative_date
+split: train
+category: booking
+description: >
+  "Next Friday morning" said on a Monday is ambiguous (Oct 16 or Oct 23). The patient means
+  Oct 16. There are two patients named John Smith, so DOB matters.
+persona: |
+  You are John Smith, date of birth 1985-09-30. You want to see a family doctor "next Friday
+  morning" for a persistent cough. By "next Friday" you mean this coming Friday, October 16.
+  If the assistant asks which Friday, say the 16th. If the assistant offers a time on a
+  different date, point out that you meant Friday the 16th. Morning only. Accept the first
+  morning slot on the 16th and say yes when asked to confirm.
+opening: Hi, can I see a family doctor next Friday morning?
+checks:
+  - {type: appointment_booked, patient_id: pt_john_b, specialty: family medicine, date: "2026-10-16", before_hour: 12, critical: true}
+  - {type: confirmed_before_commit, critical: true}
+  - {type: max_bookings, n: 1, critical: true}
+  - {type: conversation_completed}
+rubric: [clarifies_ambiguity, read_back_details, concise]

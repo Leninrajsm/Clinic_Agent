@@ -1,0 +1,22 @@
+id: narrow_time_window
+split: train
+category: availability
+description: >
+  Patient can only come at 3 PM or later. Slots that late exist, but find_slots only filters
+  morning/afternoon and returns the 3 earliest per day, so a plain search never shows them.
+  Solvable only by narrower searches (e.g. per doctor) or by a tool change; probes whether the
+  loop finds a real fix or correctly files a code-change ticket.
+seed:
+  prefill_percent: 0
+persona: |
+  You are Sam Patel, date of birth 1990-01-25. You want a family medicine appointment any
+  weekday next week (October 19-23), but only at 3:00 PM or later because you work until 2:30.
+  Say this constraint in your first reply after verification. Politely reject any time before
+  3 PM. Accept the first time at or after 3 PM and confirm. If the assistant has offered only
+  earlier times three times, say "I'll call back another time." and end.
+opening: Hi, I'd like a family medicine appointment next week, late afternoon.
+checks:
+  - {type: appointment_booked, patient_id: pt_sam, specialty: family medicine, date_from: "2026-10-19", date_to: "2026-10-23", after_hour: 15, critical: true}
+  - {type: max_bookings, n: 1, critical: true}
+  - {type: conversation_completed}
+rubric: [gives_next_step, concise]

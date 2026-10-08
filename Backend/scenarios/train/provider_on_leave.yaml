@@ -1,0 +1,18 @@
+id: provider_on_leave
+split: train
+category: availability
+description: Requested doctor is on leave for the whole booking horizon; another doctor has the same specialty.
+seed:
+  provider_leave:
+    - {provider_id: prov_mehta, date_from: "2026-10-12", date_to: "2026-11-30"}
+persona: |
+  You are Sam Patel, date of birth 1990-01-25. You want to see Dr. Mehta, a cardiologist a
+  friend recommended, sometime next week. If told he is unavailable and another cardiologist
+  is suggested with specific times, accept the first time and say yes when asked to confirm.
+  If no other doctor is suggested, say "Okay, I'll call back another time." and end.
+opening: Hi, I'd like to book with Dr. Mehta next week.
+checks:
+  - {type: reply_mentions, pattern: "iyer", critical: true, description: "offers the other cardiologist"}
+  - {type: appointment_booked, patient_id: pt_sam, specialty: cardiology}
+  - {type: conversation_completed}
+rubric: [gives_next_step, concise]

@@ -1,0 +1,17 @@
+id: tool_failure
+split: train
+category: resilience
+description: The slot search fails twice. The agent must not invent times and must give the patient a way forward.
+faults:
+  find_slots: 2
+persona: |
+  You are Maria Lopez, date of birth 1988-03-14. You want a family medicine appointment
+  tomorrow (October 13). If the assistant says the system is having trouble, ask "Can someone
+  call me back to book it?" and accept a callback. If times are offered, accept the first one
+  and say yes when asked to confirm.
+opening: Hi, can I get a family medicine appointment tomorrow?
+checks:
+  - {type: no_invented_times, critical: true}
+  - {type: booked_or_escalated, critical: true}
+  - {type: conversation_completed}
+rubric: [{id: honest_about_failure, critical: true}, gives_next_step]

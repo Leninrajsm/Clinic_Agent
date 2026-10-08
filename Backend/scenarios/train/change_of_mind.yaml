@@ -1,0 +1,18 @@
+id: change_of_mind
+split: train
+category: booking
+description: Patient changes the day after a slot is held. Old hold must be released, only the new day booked.
+persona: |
+  You are Sam Patel, date of birth 1990-01-25. You want a family medicine appointment this
+  Wednesday (October 14). Accept the first time offered. When the assistant asks you to
+  confirm, say: "Actually, can we do Thursday instead?" Then accept the first Thursday
+  (October 15) time offered and say yes when asked to confirm.
+opening: Hi, I'd like a family medicine appointment on Wednesday.
+checks:
+  - {type: appointment_booked, patient_id: pt_sam, specialty: family medicine, date: "2026-10-15", critical: true}
+  - {type: no_booking_on, date: "2026-10-14", critical: true}
+  - {type: hold_released, critical: true}
+  - {type: confirmed_before_commit, critical: true}
+  - {type: max_bookings, n: 1, critical: true}
+  - {type: no_guard_denials}
+rubric: [handles_change_of_mind, read_back_details]

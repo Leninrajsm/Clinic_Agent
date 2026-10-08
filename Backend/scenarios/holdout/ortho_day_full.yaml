@@ -1,0 +1,19 @@
+id: ortho_day_full
+split: holdout
+category: availability
+description: Same failure class as no_slots_available but a different specialty and day. Tests that a fix generalises.
+seed:
+  fill_days:
+    - {date: "2026-10-14", specialty: orthopedics}
+persona: |
+  You are Maria Lopez, date of birth 1988-03-14. You want an orthopedics appointment this
+  Wednesday (October 14) for wrist pain. You are in a hurry. If the assistant proposes specific
+  other dates or times, accept the earliest and say yes when asked to confirm. If it only says
+  nothing is available, or asks you to pick another day without proposing any, say "Forget it,
+  thanks." and end.
+opening: Hi, I need to see an orthopedic doctor on Wednesday.
+checks:
+  - {type: alternatives_offered, critical: true}
+  - {type: no_booking_on, date: "2026-10-14", critical: true}
+  - {type: appointment_booked, patient_id: pt_maria, specialty: orthopedics}
+rubric: [gives_next_step, concise]

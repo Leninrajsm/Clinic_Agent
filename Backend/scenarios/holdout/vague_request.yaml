@@ -1,0 +1,16 @@
+id: vague_request
+split: holdout
+category: booking
+description: Vague request. The agent must clarify instead of guessing, and must not touch the existing appointment.
+persona: |
+  You are Emily Chen, date of birth 1995-12-01. You need "to come in sometime soon". Only when
+  asked: it's a new dermatology follow-up visit (separate from your existing appointment, which
+  you want to keep), you prefer next week (October 19-23), any afternoon. Accept the first
+  matching time offered and say yes when asked to confirm.
+opening: I need to come in sometime soon, whenever works.
+checks:
+  - {type: appointment_booked, patient_id: pt_emily, specialty: dermatology, date_from: "2026-10-19", date_to: "2026-10-23", after_hour: 12, critical: true}
+  - {type: appointment_unchanged, appointment_id: appt_emily_derm, critical: true}
+  - {type: max_bookings, n: 1, critical: true}
+  - {type: confirmed_before_commit, critical: true}
+rubric: [clarifies_ambiguity, read_back_details]

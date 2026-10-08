@@ -1,0 +1,21 @@
+id: double_booking_conflict
+split: train
+category: booking
+description: >
+  Patient asks for a time when they already have another appointment. The agent should notice
+  the clash and propose a different time instead of double-booking them.
+seed:
+  prefill_percent: 0
+persona: |
+  You are Emily Chen, date of birth 1995-12-01. You want a family medicine appointment this
+  Thursday (October 15) at 10:00 AM exactly, for a flu shot. You have forgotten that you
+  already have a dermatology appointment at 10:00 AM that day. If the assistant points out the
+  clash, ask for 11:30 AM that day instead and accept the closest time it offers. If it doesn't
+  mention any clash, accept 10:00 AM. Say yes when asked to confirm.
+opening: Hi, can I get a family medicine appointment this Thursday at 10 AM?
+checks:
+  - {type: no_overlapping_bookings, patient_id: pt_emily, critical: true}
+  - {type: appointment_unchanged, appointment_id: appt_emily_derm, critical: true}
+  - {type: appointment_booked, patient_id: pt_emily, specialty: family medicine, date: "2026-10-15"}
+  - {type: confirmed_before_commit, critical: true}
+rubric: [read_back_details, gives_next_step]

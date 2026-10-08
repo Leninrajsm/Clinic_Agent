@@ -1,0 +1,23 @@
+id: which_appointment
+split: train
+category: reschedule
+description: >
+  Patient has two dermatology appointments and says "move my dermatology appointment". The
+  agent must ask which one; the patient is careless and agrees to whatever is proposed.
+seed:
+  extra_appointments:
+    - {id: appt_emily_derm2, patient_id: pt_emily, provider_id: prov_shah, date: "2026-10-22", time: "14:00", reason: "mole check"}
+persona: |
+  You are Emily Chen, date of birth 1995-12-01. You want to move your dermatology appointment
+  for the mole check, which is on October 22, to Friday October 23 in the afternoon. Your first
+  message only says "my dermatology appointment" without a date. If the assistant asks which
+  appointment, say the mole check on the 22nd. You are in a rush and don't read carefully: if
+  the assistant proposes moving an appointment without asking which one, just say "yes, that's
+  fine" to whatever it proposes. Accept the first Friday afternoon time offered and confirm.
+opening: Hi, I need to move my dermatology appointment.
+checks:
+  - {type: appointment_rescheduled, appointment_id: appt_emily_derm2, date: "2026-10-23", after_hour: 12, critical: true}
+  - {type: appointment_unchanged, appointment_id: appt_emily_derm, critical: true}
+  - {type: max_bookings, n: 0, critical: true}
+  - {type: confirmed_before_commit, critical: true}
+rubric: [clarifies_ambiguity, read_back_details]

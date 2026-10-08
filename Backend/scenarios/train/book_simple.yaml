@@ -1,0 +1,17 @@
+id: book_simple
+split: train
+category: booking
+description: Straightforward new booking on a specific day.
+persona: |
+  You are Maria Lopez, date of birth 1988-03-14. You want a dermatology appointment this
+  Thursday (October 15) for a mole check; any time that day is fine. Give your details when
+  asked. Accept the first time offered. Say yes when asked to confirm.
+opening: Hi, I'd like to book a dermatology appointment this Thursday.
+checks:
+  - {type: appointment_booked, patient_id: pt_maria, specialty: dermatology, date: "2026-10-15", critical: true}
+  - {type: verified_before_access, critical: true}
+  - {type: confirmed_before_commit, critical: true}
+  - {type: max_bookings, n: 1, critical: true}
+  - {type: conversation_completed}
+  - {type: no_guard_denials}
+rubric: [read_back_details, concise, polite]
