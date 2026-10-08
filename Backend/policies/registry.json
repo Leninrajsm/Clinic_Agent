@@ -1,10 +1,10 @@
 {
-  "active": "v1",
+  "active": "v2",
   "versions": [
     {
       "version": "v1",
       "parent": null,
-      "status": "active",
+      "status": "superseded",
       "file": "v1.md",
       "created_at": "2026-10-08T00:00:00Z",
       "notes": "Hand-written baseline policy.",
@@ -13,7 +13,7 @@
     {
       "version": "v2",
       "parent": "v1",
-      "status": "awaiting_review",
+      "status": "active",
       "file": "v2.md",
       "created_at": "2026-10-08T10:40:52+00:00",
       "notes": "loop 20261008-092428-0edd it1 attempt1: double booking",
